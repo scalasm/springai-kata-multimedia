@@ -1,6 +1,6 @@
-# Spring-AI kata (Functions)
+# Spring-AI kata (Multimedia)
 
-This is my sandbox for working with Spring AI using more advanced features like functions integrations: it is a follow up
+This is my sandbox for working with Spring AI dealing with images and audio generation. It is a follow up
 of the other related Spring AI kata repositiories:
 - [Spring AI Kata](https://github.com/scalasm/springai-kata) which deals with more common topics!
 - [Spring AI Kata Functions](https://github.com/scalasm/springai-kata-functions) which deals with tools integrations!

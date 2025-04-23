@@ -5,23 +5,28 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import me.marioscalas.saikata.images.AIPromptService;
 import me.marioscalas.saikata.images.model.Question;
+import me.marioscalas.saikata.images.model.VisionDescriptionAnswer;
 
 /**
  * Simple REST API for images generation.
  */
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/images")
-public class AIPromptController {
+public class ImagesPromptController {
     
     private final AIPromptService aiPromptService;
     
-    AIPromptController(AIPromptService aiPromptService) {
+    ImagesPromptController(AIPromptService aiPromptService) {
         this.aiPromptService = aiPromptService;
     }
 
@@ -33,9 +38,18 @@ public class AIPromptController {
      */
     @Operation(summary = "Generate an image from a prompt and return it as response")
     @PostMapping(produces = {MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE}, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<byte[]> submitQuestion(@RequestBody @Valid Question question) {
+    public ResponseEntity<byte[]> generateImage(@RequestBody @Valid Question question) {
+        log.debug("Generating image for prompt: {}", question.text());
         return ResponseEntity.ok().body(
             aiPromptService.generateImage(question)    
         );
     }
+
+    @Operation(summary = "Identify the content within and image and return it as text response")
+    @PostMapping(value = "/describe", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<VisionDescriptionAnswer> describeImage(@RequestParam("imageFile") @Valid MultipartFile imageFile) {
+        return ResponseEntity.ok().body(
+            aiPromptService.describeImage(imageFile)    
+        );
+    }    
 }

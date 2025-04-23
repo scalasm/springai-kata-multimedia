@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: springai-kata
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY:"Please set your OpenAI API key"}
+  # Enable OpenAI optimized model for embeddings
+      embedding:
+        options:
+          model: text-embedding-3-small
+      chat:
+        options:
+          model: gpt-4-turbo
+
+# /api-docs endpoint custom path
+springdoc:
+  api-docs:
+    path: /api-docs
+
+# Ninjas API configuration
+ninjas:
+  api-key: ${NINJAS_API_KEY:"Please set your Ninjas API key"} 
+
+
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.boot: INFO
+    me.marioscalas.saikata: DEBUG

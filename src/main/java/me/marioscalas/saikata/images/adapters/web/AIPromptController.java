@@ -32,7 +32,7 @@ public class AIPromptController {
      * @return the generated image as a byte array
      */
     @Operation(summary = "Generate an image from a prompt and return it as response")
-    @PostMapping(produces = MediaType.IMAGE_PNG_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = {MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE}, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<byte[]> submitQuestion(@RequestBody @Valid Question question) {
         return ResponseEntity.ok().body(
             aiPromptService.generateImage(question)    

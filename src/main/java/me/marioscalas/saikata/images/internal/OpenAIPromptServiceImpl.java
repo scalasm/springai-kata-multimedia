@@ -6,8 +6,6 @@ import org.springframework.ai.image.ImageModel;
 import org.springframework.ai.image.ImagePrompt;
 import org.springframework.ai.image.ImageResponse;
 import org.springframework.ai.openai.OpenAiImageOptions;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import jakarta.validation.Valid;
@@ -17,8 +15,8 @@ import me.marioscalas.saikata.images.model.Question;
 @Component
 public class OpenAIPromptServiceImpl implements AIPromptService {
 
-    @Value("classpath:/templates/get-stock-prices-prompt.st")
-    private Resource getStockPricesPromptTemplate;
+    private static final String DALL_E_3_MODEL = "dall-e-3";
+    private static final String B64_JSON_FORMAT = "b64_json";
 
     private final ImageModel imageModel;
     
@@ -30,8 +28,8 @@ public class OpenAIPromptServiceImpl implements AIPromptService {
     public byte[] generateImage(@Valid Question question) {
         final OpenAiImageOptions options = OpenAiImageOptions.builder()
             .width(1024).height(1024)
-            .withResponseFormat("b64_json")
-            .withModel("dall-e-3")
+            .withResponseFormat(B64_JSON_FORMAT)
+            .withModel(DALL_E_3_MODEL)
             .build();
 
 

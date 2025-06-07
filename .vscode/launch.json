@@ -6,7 +6,7 @@
             "name": "Spring Boot App",
             "request": "launch",
             "mainClass": "me.marioscalas.saikata.SpringaiKataApplication",
-            "projectName": "springai-kata-functions",
+            "projectName": "springai-kata-multimedia",
             "envFile": "${workspaceFolder}/.env"
         }
     ]

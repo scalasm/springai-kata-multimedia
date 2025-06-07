@@ -1,9 +1,10 @@
 # Spring-AI kata (Multimedia)
 
 This is my sandbox for working with Spring AI dealing with images and audio generation. It is a follow up
-of the other related Spring AI kata repositiories:
-- [Spring AI Kata](https://github.com/scalasm/springai-kata) which deals with more common topics!
-- [Spring AI Kata Functions](https://github.com/scalasm/springai-kata-functions) which deals with tools integrations!
+of the other related Spring AI kata. The entire series is made of:
+ - [Spring AI Kata](https://github.com/scalasm/springai-kata) - prompts, RAG with Milvus
+ - [Spring AI Kata with Azure Functions](https://github.com/scalasm/springai-kata-functions) dealing with Azure functions integration: this should be superseded by a [MCP implementation](https://docs.spring.io/spring-ai-mcp/reference/spring-mcp.html)
+ - [Spring AI Kata w/ Multimedia content](https://github.com/scalasm/springai-kata-multimedia), deals with image generation, and text2speech
 
 # Requirements
 - JDK 21 or better
